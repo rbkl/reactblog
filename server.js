@@ -16,9 +16,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Configuring the MongoDB
+// DB Config
+const db = process.env.MONGO_URI;
 
 // Connect to MongoDB
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 
 // Passport middleware
